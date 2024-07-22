@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+   <div>
+    <h1>To Do List</h1> 
+    <form action="/add" method="post">
+        <div class="task-input">
+            <label>Enter the task</label>
+            <input type="text" name="name">
+            <button type="submit">Add task</button>
+        </div>
+    </form><br> <br>
+    <table>
+        <tbody>
+        {% for todo in todo_list %}
+        <tr>
+            <td>{{ todo.task_id }}</td>
+            <td>{{ todo.name }}</td>
+            <td>
+                <form action="/update/{{ todo.task_id }}" method="post" style="display:inline;">
+                    <input type="checkbox" name="done" {% if todo.done %}checked{% endif %} onchange="this.form.submit()">
+                </form>
+            </td>
+            <td>
+                <form action="/delete/{{ todo.task_id }}" method="post" style="display:inline;">
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   </div>
+</body>
+</html>
