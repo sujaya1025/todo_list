@@ -53,32 +53,3 @@ if __name__=='__main__':
 
 
 
-"""
-app = Flask(__name__)
-tasks = []
-
-class Task:
-    def __init__(self, name, completed=False):
-        self.name = name
-        self.completed = completed
-
-@app.route('/')
-def index():
-    # Add index numbers to tasks for rendering
-    indexed_tasks = [(idx, task) for idx, task in enumerate(tasks)]
-    return render_template('index.html', tasks=indexed_tasks)
-
-@app.route('/add_task', methods=['POST'])
-def add_task():
-    task_name = request.form['task']
-    tasks.append(Task(task_name))
-    return redirect(url_for('index'))
-
-@app.route('/toggle_task/<int:task_index>')
-def toggle_task(task_index):
-    tasks[task_index].completed = not tasks[task_index].completed
-    return '', 204  # No content response
-
-if __name__ == '__main__':
-    app.run(debug=True)
-"""
